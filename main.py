@@ -10,3 +10,4 @@
 #
 
 print("Hello world!")
+print("This is BowlingManager2022!")
