@@ -79,14 +79,15 @@ def viewGames():
        print("please enter correct option")
 
 def viewOpenGames():
-    with open("score.txt", "r") as csv_file:
-       
-        csv_reader = csv.reader(csv_file)
-
-        for line in csv_reader:
-           print(line)
-           print("hi")
- #for starting a new bowling game        
+    #To open a old game.
+    username = input("Please enter username")
+    filename = open(username, "r")
+    print()
+    #To print without bracket & comma   
+    separator=""
+    print(separator.join(filename))
+      
+#for starting a new bowling game        
 def addGame():
     print("Add a new game")
 
