@@ -15,6 +15,7 @@ import csv
 def main():
    
     while True:
+         #create menu options
         print("--------Main Menu--------")       
         print("Welcome to the bowling alley! What would you like to do?")
         print("1. Active bowling games")
@@ -46,7 +47,7 @@ def main():
         else:
             print("Please select a valid option")
 
-
+#menu options inside viewgames.
 def viewGames():
    
    print("a)View current active games")
@@ -75,7 +76,7 @@ def viewGames():
         main()
        
    else:
-       print("plaes")
+       print("please enter correct option")
 
 def viewOpenGames():
     with open("score.txt", "r") as csv_file:
@@ -85,13 +86,17 @@ def viewOpenGames():
         for line in csv_reader:
            print(line)
            print("hi")
+ #for starting a new bowling game        
 def addGame():
     print("Add a new game")
 
-
+#bowling histories
 def archiveGames():
     print("Archive all current games")
+      
+#bowling score calculator       
 def scorecalculator():
+   #its better to ask username for everytime so, later  user information can be pulled easily.
     username = input('please enter a username ')
     totalscore = open(username,'w')
     print("The total number of rounds are 9")
