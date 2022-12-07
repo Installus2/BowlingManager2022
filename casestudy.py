@@ -35,28 +35,22 @@ def mainMenu():
         print(f"Main Menu\n{h.additionalSigns('Main Menu', True)}\n")       
         print("You are at the main menu, please select an option from below:")
         print("1) View active and archived bowling games")
-        print("2) Create a new bowling game")
-        print("3) Inventory")
-        print("4) Check today's profits")
-        print("5) Management options")
-        print("6) Exit")
+        print("2) Inventory")
+        print("3) Check today's profits")
+        print("4) Management options")
+        print("E) Exit")
         
-        option = input("\nSelect an option: ")
+        option = input("\nSelect an option: ").lower()
        
         if option == "1":
-            viewGames()
-       
+            gm.gamesMenu()
         elif option == "2":
-            addGame()
-       
+            inventoryMenu()
         elif option == "3":
-            archiveGames()
-        
-        elif option == "4":
             checkProfits()
-        elif option == "5":
+        elif option == "4":
             optionsMenu()
-        elif option == "6":
+        elif option == "e":
             print("Exiting program.....")
             break
        
@@ -69,115 +63,8 @@ def checkProfits():
 def optionsMenu():
     pass # DW - Placeholder for now
 
-#menu options inside viewgames.
-def viewGames():
-   
-   print("a)View current active games")
-   print("b)Add new active game")
-   print("c)Archive all current games")
-   print("d)score calculator")
-   print("e)Return to main menu")
+def inventoryMenu():
+    pass # DW - Placeholder for now
 
-   choice = input("Select an choice: ")
-   
-   if choice == "a":
-        viewOpenGames()
-       
-   elif choice == "b":
-       
-        addGame()
-       
-   elif choice == "c":
-        archiveGames()
-        
-   elif choice == "d":
-       scorecalculator()
-       
-   elif choice == "e":
-       
-        main()
-       
-   else:
-       print("please enter correct option")
-
-def viewOpenGames():
-    #To open a old game.
-    username = input("Please enter username")
-    filename = open(username, "r")
-    print()
-    #To print without bracket & comma   
-    separator=""
-    print(separator.join(filename))
-      
-#for starting a new bowling game        
-def addGame():
-    print("Add a new game")
-
-#bowling histories
-def archiveGames():
-    print("Archive all current games")
-      
-#bowling score calculator       
-def scorecalculator():
-   #its better to ask username for everytime so, later  user information can be pulled easily.
-    username = input('please enter a username ')
-    totalscore = open(username,'w')
-    print("The total number of rounds are 9")
-                     
-    score = 0
-    c = 0 
-
-    def print_score(frame,score):
-        print("\n Score after {0} frame is {1}".format(frame+1,score))
-
-    for frame in range(10):
-        roll_1 = 0
-        roll_2 = 0
-        roll_1 = int(input('\n Pin dropped in first roll: '))
-        if roll_1 == 10:
-            score += 10
-            print_score(frame,score)
-            if c == 1 or c == 2:
-                score += 10
-            c = 1
-        else:
-            roll_2 = int(input('\n Pin dropped in second roll: '))
-            if c == 1:
-                score += roll_1 + roll_2
-            if c == 2:
-                score += roll_1
-            if (roll_1 + roll_2) == 10 :
-                score += 10
-                c = 2
-                print_score(frame,score)
-            else:
-                score += roll_1 + roll_2
-                c = 0
-                print_score(frame,score)
-        if frame == 9:
-            if c == 1:
-                r1 = int(input('\n Pin dropped in bonus first roll: '))
-                if r1 == 10:
-                    score += 10
-                    print("Total score {}".format(score))
-                else:
-                    r2 = int(input('\nPin dropped in bonus second roll: '))
-                    score += r1 + r2 
-                    print("Total score {}".format(score))
-            elif c == 2:
-                r1 = int(input('\n Pin dropped in bonus first roll: '))
-                score += r1
-                print("Total score {}".format(score))
-            else:
-                print("Total score {}".format(score))
-
-        totalscore.write(str(roll_1))
-        totalscore.write("\t")
-        totalscore.write(str(roll_2))
-        totalscore.write("\n")
-    totalscore.close()
-        
-
-
-
-main()
+if __name__ == "__main__":
+    main()
