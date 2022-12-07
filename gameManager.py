@@ -19,17 +19,17 @@ def gamesMenu():
 
     choice = input("Select an option: ").lower()
     
-    if choice == "a":
+    if choice == "1":
             viewActiveGames()
         
-    elif choice == "b":
+    elif choice == "2":
         
             addGame()
         
-    elif choice == "c":
+    elif choice == "3":
             archiveGames()
             
-    elif choice == "d":
+    elif choice == "4":
         scorecalculator()
         
     elif choice == "e":
