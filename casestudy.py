@@ -15,6 +15,12 @@ import csv
 # Feel free to add more functions to the helper module but please comment and describe what it does
 import dannyHelper as h 
 
+# DW - Import the additional helper modules
+
+import gameManager as gm
+import settingsHelper as sh
+import invHelper as ih
+
 PROGRAM_NAME = "Bowling Manager 2022"
 
 def main():
@@ -23,11 +29,7 @@ def main():
     mainMenu()
 
 def mainMenu():
-    # DW - Initialize things that we are going to use
-    bowlingGames = {
-        "Active":[],
-        "Archived":[]
-    }
+    
     while True:
          #create menu options
         print(f"Main Menu\n{h.additionalSigns('Main Menu', True)}\n")       
