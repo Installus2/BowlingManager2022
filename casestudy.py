@@ -1,9 +1,9 @@
-# Title     :casestudy 
-# Purpose   : bowling manager 
+# Title         : Bowling Manager 2022 
+# Purpose       : A bowling alley management program including inventory, active and archived games, and profits
 #
-# Programmer: Amal,Athul,Danny,Minto 
-# Date      :3 DEC 2022
-# Reference :
+# Programmers   : Amal,Athul,Danny,Minto 
+# Date          : 3 DEC 2022
+# Reference     :
 
 #different options for selecting users need.
 #Bowling score calculaor
@@ -11,21 +11,35 @@
 
 import csv
 
+# DW - Personal helper module to incorporate some of my most used functions
+# Feel free to add more functions to the helper module but please comment and describe what it does
+import dannyHelper as h 
+
+PROGRAM_NAME = "Bowling Manager 2022"
 
 def main():
-   
+   #    DW - Move main menu out of main()
+    h.titleMe(PROGRAM_NAME, True) # The second argument dictates if its the main title, if set to false it prints a less intricate title
+    mainMenu()
+
+def mainMenu():
+    # DW - Initialize things that we are going to use
+    bowlingGames = {
+        "Active":[],
+        "Archived":[]
+    }
     while True:
          #create menu options
-        print("--------Main Menu--------")       
-        print("Welcome to the bowling alley! What would you like to do?")
-        print("1. Active bowling games")
-        print("2. Archived bowling games")
-        print("3. Inventory")
-        print("4. Today's Profits")
-        print("5.Price & Options")
-        print("6.Exit")
+        print(f"Main Menu\n{h.additionalSigns('Main Menu', True)}\n")       
+        print("You are at the main menu, please select an option from below:")
+        print("1) View active bowling games")
+        print("2) View archived bowling games")
+        print("3) Inventory")
+        print("4) Check today's profits")
+        print("5) Management options")
+        print("6) Exit")
         
-        option = input("Select an option: ")
+        option = input("\nSelect an option: ")
        
         if option == "1":
             viewGames()
@@ -37,15 +51,21 @@ def main():
             archiveGames()
         
         elif option == "4":
-            profit()
+            checkProfits()
         elif option == "5":
-            price()
+            optionsMenu()
         elif option == "6":
             print("Exiting program.....")
             break
        
         else:
             print("Please select a valid option")
+
+def checkProfits():
+    pass # DW - Placeholder for now
+
+def optionsMenu():
+    pass # DW - Placeholder for now
 
 #menu options inside viewgames.
 def viewGames():
