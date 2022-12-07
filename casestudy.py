@@ -34,8 +34,8 @@ def mainMenu():
          #create menu options
         print(f"Main Menu\n{h.additionalSigns('Main Menu', True)}\n")       
         print("You are at the main menu, please select an option from below:")
-        print("1) View active bowling games")
-        print("2) View archived bowling games")
+        print("1) View active and archived bowling games")
+        print("2) Create a new bowling game")
         print("3) Inventory")
         print("4) Check today's profits")
         print("5) Management options")
