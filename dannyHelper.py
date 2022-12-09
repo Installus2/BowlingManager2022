@@ -44,7 +44,7 @@ def fileTitle(inputText):
 
 def isExitFromNone(exitIfNone):
     if exitIfNone:
-        return " (leave blank to exit)"
+        return " (leave blank to load default config)"
 
 def openFile(writeMode, exitIfNone):
     tempName = input(f"Please enter a file name to read from{isExitFromNone(exitIfNone)}:   ")
