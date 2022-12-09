@@ -21,49 +21,79 @@ import gameManager as gm
 import settingsHelper as sh
 import invHelper as ih
 
-PROGRAM_NAME = "Bowling Manager 2022"
+import pickle as p
+
+titleName = "Bowling Manager 2022"
 
 def main():
    #    DW - Move main menu out of main()
-    h.titleMe(PROGRAM_NAME, True) # The second argument dictates if its the main title, if set to false it prints a less intricate title
-    mainMenu()
+    h.titleMe(titleName, True) # The second argument dictates if its the main title, if set to false it prints a less intricate title
+    settingsConfig = loadConfigFile()
+    mainMenu(settingsConfig)
 
-def mainMenu():
+def loadConfigFile():
+    askForSavedConfig = input("Would you like to load a previous saved config? (y/n):   ").lower()
+    if askForSavedConfig == "y":
+        loadSuccess = h.openFile('r', True)
+        if loadSuccess == "exit":
+            return loadDefaultConfig()
+        else:
+            savedConfig = p.load(loadSuccess)
+            loadSuccess.close()
+            return savedConfig
+
+def loadDefaultConfig():
+    bmSettings = {
+        "PricePerPlayer":5,
+        "BaseGamePrice":10,
+        "BusinessName":"Danny's Alley",
+        "TimeOffset":-5
+    }
+    return bmSettings
+
+def mainMenu(loadedConfig):
+
+    global titleName
+
+    bowlingGames = {
+        "Active":[],
+        "Archived":[]
+    }
+
+    currentConfig = loadedConfig
+
+    titleName = currentConfig["BusinessName"]
+
+    inventory = []
     
     while True:
          #create menu options
         print(f"Main Menu\n{h.additionalSigns('Main Menu', True)}\n")       
         print("You are at the main menu, please select an option from below:")
-        print("1) View active and archived bowling games")
+        print("1) View Active and Archived Bowling Games")
         print("2) Inventory")
-        print("3) Check today's profits")
-        print("4) Management options")
+        print("3) Check Today's Profits")
+        print("4) Management Options")
         print("E) Exit")
         
         option = input("\nSelect an option: ").lower()
        
         if option == "1":
-            gm.gamesMenu()
+            gm.gamesMenu(bowlingGames, currentConfig)
         elif option == "2":
-            inventoryMenu()
+            ih.inventoryMenu(inventory)
         elif option == "3":
-            checkProfits()
+            checkProfits(bowlingGames, currentConfig)
         elif option == "4":
-            optionsMenu()
+            sh.optionsMenu(currentConfig)
         elif option == "e":
-            print("Exiting program.....")
+            print("Exiting program...")
             break
        
         else:
             print("Please select a valid option")
 
 def checkProfits():
-    pass # DW - Placeholder for now
-
-def optionsMenu():
-    pass # DW - Placeholder for now
-
-def inventoryMenu():
     pass # DW - Placeholder for now
 
 if __name__ == "__main__":
