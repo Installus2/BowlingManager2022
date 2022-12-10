@@ -47,10 +47,23 @@ def optionsMenu(currentConfig): # DW - Put this menu in a loop
       changedConfig = loadConfiguration("Default")
     elif choice == "9":
       view_about()
+    elif choice == "v":
+      viewRunningConfig(changedConfig)
     elif choice == "e":
       return changedConfig
     else:
       print("Invalid choice. Please try again.")
+
+def viewRunningConfig(config):
+  h.titleMe("View Running Configuration", False)
+  print(f"Business Name:      {config['BusinessName']}")
+  print(f"Price per Game:   $ {config['BaseGamePrice']:,.2f}")
+  print(f"Price per Player: $ {config['PricePerPlayer']:,.2f}")
+  print(f"Timezone Offset:    {config['TimeOffset']}")
+  print("\nBusiness Hours:\n")
+  for day, time in config["BusinessHours"].items():
+    print(f"{day:<10} - {time}")
+  input("\nPress ENTER to return to the menu...")
 
 def changeBusinessHours(config):
   h.titleMe("View/Change Business Hours", False)
