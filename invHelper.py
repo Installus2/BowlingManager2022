@@ -24,7 +24,7 @@ def inventoryMenu(inventory, currentConfig):
         elif userInput == "2":
             inventory = updateInventory(inventory)
         elif userInput == "3":
-            saveInventory(inventory, currentConfig["TimeOffset"])
+            saveInventory(inventory, currentConfig)
         elif userInput == "4":
             inventory = loadInventory(inventory)    # DW - Pass the original inventory in case user backs out
         else:
@@ -96,7 +96,7 @@ def updateInventory(inventory):  # DW - Updated function name to shorten it down
                 print("Please enter a valid input!")      
 
 # Write the updated inventory to the "inventory.txt" file
-def saveInventory(inventory, tzOffset):
+def saveInventory(inventory, currentConfig):
     h.titleMe("Save Inventory", False)
     while True:
         saveAsTxt = input("Would you like to save the inventory as a .txt? (y/n, blank to exit):   ").lower()
@@ -108,7 +108,7 @@ def saveInventory(inventory, tzOffset):
                 fileToWrite = h.openFile('a', "File")
             if fileToWrite == "exit":
                 break
-            fileToWrite.write(h.fileTitle(fileToWrite.name.split(".txt")[0], tzOffset)+"\n")
+            fileToWrite.write(h.fileTitle(currentConfig["BusinessName"], currentConfig["TimeOffset"])+"\n")
             fileToWrite.write("\n")
             for key, pair in inventory.items():
                 fileToWrite.write(f"{key+':':<20} x {pair[0]:<5} @ $ {pair[1]:,.2f}\n")
