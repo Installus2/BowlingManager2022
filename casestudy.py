@@ -19,6 +19,7 @@ import dannyHelper as h
 import gameManager as gm
 import settingsHelper as sh
 import invHelper as ih
+import profitChecker as pc
 
 import pickle as p
 
@@ -38,9 +39,7 @@ def loadConfigFile():
             if loadSuccess == "exit":
                 return loadDefaultConfig()
             else:
-                savedConfig = p.load(loadSuccess)
-                loadSuccess.close()
-                return savedConfig
+                return loadSuccess
         elif askForSavedConfig == "n":
             return loadDefaultConfig()
         else:
@@ -103,11 +102,11 @@ def mainMenu(loadedConfig):
         option = input("\nSelect an option: ").lower()
        
         if option == "1":
-            gm.gamesMenu(bowlingGames, currentConfig)
+            bowlingGames = gm.gamesMenu(bowlingGames, currentConfig)
         elif option == "2":
             ih.inventoryMenu(inventory, currentConfig)
         elif option == "3":
-            checkProfits(bowlingGames, currentConfig)
+            pc.checkProfits(bowlingGames, currentConfig)
         elif option == "4":
             currentConfig = sh.optionsMenu(currentConfig)
         elif option == "e":
@@ -116,22 +115,6 @@ def mainMenu(loadedConfig):
        
         else:
             print("Please select a valid option")
-
-def checkProfits():
-    def checkProfits(bowlingGames, currentConfig):
- 
-  totalProfits = 0
-  
-   for game in bowlingGames:
-    
-    totalPrice = game.numPlayers * currentConfig.pricePerPlayer + currentConfig.pricePerGame
-    
-    
-    totalProfits += totalPrice
-  
-  
-  return totalProfits
-
 
 if __name__ == "__main__":
     main()

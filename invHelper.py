@@ -139,8 +139,6 @@ def loadInventory(ogInventory):
             elif loadSuccess == None:
                 return ogInventory
             else:
-                loadedInventory = p.load(loadSuccess)
-                loadSuccess.close()
-                return loadedInventory
+                return loadSuccess
         elif userInput == "n":
             return ogInventory

@@ -9,7 +9,7 @@ import datetime
 import pickle
 from time import sleep
 
-def additionalSigns(inputString, isEqualSign):
+def additionalSigns(inputString, isEqualSign = False):
     returnString = "" # Make a blank string
     if isEqualSign:
         for i in range(0, len(inputString)):
@@ -52,7 +52,6 @@ def openFile(writeMode, exitIfNone, isPickle = False):
     try:
         if tempName == "":
             if exitIfNone:
-                print("Goodbye!")
                 return "exit"
             else:
                 print("Please enter a file name!")
@@ -60,9 +59,13 @@ def openFile(writeMode, exitIfNone, isPickle = False):
         if not isPickle:
             FILE_NAME = (tempName.split(".txt"))[0]+".txt"
         elif isPickle:
-            FILE_NAME = (tempName.split(".txt"))[0]+".dat"
+            FILE_NAME = (tempName.split(".dat"))[0]+".dat"
         print(f"Now accessing {FILE_NAME}...\n")
         returnFile = open(FILE_NAME, writeMode)
+        if isPickle:    # DW - Automatically return the dictionary instead of forcing load outside of module
+            returnPickle = pickle.load(returnFile)
+            returnFile.close()
+            returnFile = returnPickle
         sleep(0.25)
         return returnFile
     except FileNotFoundError as e:    #   File could not be opened
@@ -82,7 +85,6 @@ def pickleFile(inputFile):
     try:
         fileToOutput = open(tempName, "wb")
         pickle.dump(inputFile, fileToOutput)
-        print("Finished!")
         fileToOutput.close()
         return 0
     except IOError as e:

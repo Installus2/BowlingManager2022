@@ -10,15 +10,13 @@ import uuid
 
 PROGRAM_NAME = "Bowling Manager 2022"
 
-bowlingList = None
-activeSettings = None
+bowlingGames = None
+bmSettings = None
 
 def gamesMenu(bowlingGames, bmSettings):
-    global bowlingList
-    global activeSettings
 
-    bowlingList = bowlingGames
-    activeSettings = bmSettings
+    bowlingGames = bowlingGames
+    bmSettings = bmSettings
 
     while True:
         h.titleMe("Games Menu", False)
@@ -27,29 +25,104 @@ def gamesMenu(bowlingGames, bmSettings):
         print("2) Add new game")
         print("3) Archive all current games")
         print("4) View archived games")
+        print("5) Save games to file")
+        print("6) Load from file")
         print("E) Return to main menu")
 
         choice = input("Select an option: ").lower()
         
         if choice == "1":
-            printGameList("Active")
+            printGameList(bowlingGames, bmSettings, "Active")
         elif choice == "2":
-            newGame = addGame(activeSettings["TimeOffset"])
-            newUUID = uuid.uuid4()
+            newGame = addGame(bmSettings["TimeOffset"])
+            newUUID = str(uuid.uuid4())
             bowlingGames["Active"][newUUID] = newGame
         elif choice == "3":
-            switchGameStatus(True)
+            switchGameStatus(bowlingGames, bmSettings, True)
         elif choice == "4":
-            printGameList("Archived")
+            printGameList(bowlingGames, bmSettings, "Archived")
+        elif choice == "5":
+            saveGameList(bowlingGames, bmSettings)
+        elif choice == "6":
+            bowlingGames = loadGames(bowlingGames)
         elif choice == "e":
-            break    
+            return bowlingGames    
         else:
             print("That was not a valid option! Please try again.")
 
-def printGameList(gameStatus):
+def saveGameList(bowlingGames, bmSettings):
+    h.titleMe("Save Bowling Games", False)
+    while True:
+        saveAsTxt = input("Would you like to save a list of bowling games as a .txt? (y/n, blank to exit):   ").lower()
+        if saveAsTxt == "":
+            break
+        elif saveAsTxt == "y":
+            fileToWrite = None
+            while fileToWrite == None:
+                fileToWrite = h.openFile('a', "File")
+            if fileToWrite == "exit":
+                break
+            fileToWrite.write(h.fileTitle(bmSettings["BusinessName"], bmSettings["TimeOffset"])+"\n")
+            fileToWrite.write("\n\nActive Games:\n\n")
+            for uuid, game in bowlingGames["Active"].items():
+                fileToWrite.write(f"Game ID: {uuid}\n")
+                fileToWrite.write(f"Generation Time/Date: {game['DateTimeGenerated'][0]} - {game['DateTimeGenerated'][1]}\n")
+                fileToWrite.write(f"Game Type: {game['GameType']}\n\n")
+                fileToWrite.write("Players:\n\n")
+                ticker = 1
+                for p , s in game['Players'].items():
+                    fileToWrite.write(f"Player {str(ticker)+'.':<5} {p:<15} | Score: {s}\n")
+                    ticker += 1
+                fileToWrite.write("\n")
+
+            fileToWrite.write("\n\nArchived Games:\n\n")
+            for uuid, game in bowlingGames["Archived"].items():
+                fileToWrite.write(f"Game ID: {uuid}\n")
+                fileToWrite.write(f"Generation Time/Date: {game['DateTimeGenerated'][0]} - {game['DateTimeGenerated'][1]}\n")
+                fileToWrite.write(f"Archive Date/Time: {game['ArchivedAt'][0]} - {game['ArchivedAt'][1]}\n")
+                fileToWrite.write(f"Game Type: {game['GameType']}\n\n")
+                fileToWrite.write("Players:\n\n")
+                ticker = 1
+                for p , s in game['Players'].items():
+                    fileToWrite.write(f"Player {str(ticker)+'.':<5} {p:<15} | Score: {s}\n")
+                    ticker += 1
+                fileToWrite.write("\n")       
+
+            fileToWrite.write("\n")
+            fileToWrite.close()
+            print("File saved!")
+            input("Press ENTER to return to the main menu...")
+            break
+
+        elif saveAsTxt == "n":  # DW - Pickle the inventory for use for loading inventories
+            pickleResult = -1
+            while pickleResult != 0:
+                pickleResult = h.pickleFile(bowlingGames)  # DW - Keep on attempting this command until success
+            print("File saved!")
+            input("Press ENTER to return to the main menu...")
+            break
+        else:
+            print("Please enter a valid selection!")
+
+def loadGames(ogList):
+    h.titleMe("Load Games List", False)
+    while True:
+        userInput = input("Would you like to load an existing games list from a .dat file? (y/n):   ").lower()
+        if userInput == "y":
+            loadSuccess = h.openFile('rb', "File", True)
+            if loadSuccess == "exit":
+                return ogList
+            elif loadSuccess == None:
+                return ogList
+            else:
+                return loadSuccess
+        elif userInput == "n":
+            return ogList
+
+def printGameList(bowlingGames, bmSettings, gameStatus):
     while True:
         h.titleMe(f"{gameStatus} Games List", False)
-        gamesList = bowlingList[gameStatus]
+        gamesList = bowlingGames[gameStatus]
         selectionToUUID = []
         selectedGame = None
 
@@ -60,20 +133,20 @@ def printGameList(gameStatus):
             ticker += 1
         selectedGame = input("\nPlease select a game you wish to view (blank to return to menu):   ")
         if selectedGame == "":
-            break
+            return bowlingGames
         else:
             try:
                 selectedGame = selectionToUUID[int(selectedGame) - 1]
-                viewListing(selectedGame, gameStatus)
+                bowlingGames = viewListing(selectedGame, gameStatus, bowlingGames, bmSettings)
             except ValueError:
                 print("That was not a valid input, please try again!")
             except EOFError:
                 print("That was not a valid input, please try again!")
 
-def viewListing(gameUUID, gameStatus):
+def viewListing(gameUUID, gameStatus, bowlingGames, bmSettings):
     while True:
         h.titleMe("View Listing", False)
-        selectedGame = bowlingList[gameStatus][gameUUID]
+        selectedGame = bowlingGames[gameStatus][gameUUID]
 
         print(f"Generation Time/Date: {selectedGame['DateTimeGenerated'][0]} - {selectedGame['DateTimeGenerated'][1]}")
         print(f"Game status: {gameStatus}")
@@ -94,16 +167,15 @@ def viewListing(gameUUID, gameStatus):
 
         userInput = input("\nPlease make a selection:   ").lower()
         if userInput == "r":
-            break
+            return bowlingGames
         elif userInput == "1":
-            editScores(gameUUID, gameStatus)
+            bowlingGames = editScores(bowlingGames, gameUUID, gameStatus)
         elif userInput == "2":
-            gameStatus = switchGameStatus(False, gameUUID, gameStatus)
+            bowlingGames, gameStatus = switchGameStatus(bowlingGames, bmSettings, False, gameUUID, gameStatus)
 
-def editScores(gameUUID, gameStatus):
-    global bowlingList
+def editScores(bowlingGames, gameUUID, gameStatus):
     h.titleMe("Edit Scores", False)
-    gameInQuestion = bowlingList[gameStatus][gameUUID]
+    gameInQuestion = bowlingGames[gameStatus][gameUUID]
     for p, s in gameInQuestion['Players'].items():
         print(f'Player: {p:<20} | Score: {s}')
     while True:
@@ -120,46 +192,45 @@ def editScores(gameUUID, gameStatus):
                         print("You cannot have a score less than zero!")
                     else:
                         gameInQuestion['Players'][playerSelect] = scoreInput
-                        bowlingList[gameStatus][gameUUID] = gameInQuestion
-                        break        
+                        bowlingGames[gameStatus][gameUUID] = gameInQuestion
+                        return bowlingGames        
                 except ValueError:
                     print("That was not a valid input! Please try again!")
 
-def switchGameStatus(archiveAll, gameUUID = None, gameStatus = None):
-    global bowlingList
+def switchGameStatus(bowlingGames, bmSettings, archiveAll, gameUUID = None, gameStatus = None):
     h.titleMe("Switch Game Status", False)
     while True:
         if archiveAll:
             userInput = input("Archive all active games? (y/n):   ").lower()
             if userInput == "y":
-                for key in bowlingList["Active"].keys():
-                    bowlingList["Archived"][key] = bowlingList["Active"][key]
-                    genTime = h.timeMe(activeSettings["TimeOffset"])
-                    bowlingList["Archived"][key]["ArchivedAt"] = [genTime[0], genTime[1]]
-                bowlingList["Active"] = {}
+                for key in bowlingGames["Active"].keys():
+                    bowlingGames["Archived"][key] = bowlingGames["Active"][key]
+                    genTime = h.timeMe(bmSettings["TimeOffset"])
+                    bowlingGames["Archived"][key]["ArchivedAt"] = [genTime[0], genTime[1]]
+                bowlingGames["Active"] = {}
                 input("Active games archived! Press ENTER to continue...")
-                break
+                return bowlingGames
             elif userInput == "n":
-                break
+                return bowlingGames
         else:
             userInput = input("Switch this game's status? (y/n):   ").lower()
             if userInput == "y":
                 returnStatus = None
-                copyMii = bowlingList[gameStatus][gameUUID]
+                copyMii = bowlingGames[gameStatus][gameUUID]
                 if gameStatus == "Active":
-                    bowlingList["Archived"][gameUUID] = copyMii
-                    genTime = h.timeMe(activeSettings["TimeOffset"])
-                    bowlingList["Archived"][gameUUID]["ArchivedAt"] = [genTime[0], genTime[1]]
+                    bowlingGames["Archived"][gameUUID] = copyMii
+                    genTime = h.timeMe(bmSettings["TimeOffset"])
+                    bowlingGames["Archived"][gameUUID]["ArchivedAt"] = [genTime[0], genTime[1]]
                     returnStatus = "Archived"
                 else:
-                    bowlingList["Active"][gameUUID] = copyMii
-                    bowlingList["Active"][gameUUID]["ArchivedAt"] = None
+                    bowlingGames["Active"][gameUUID] = copyMii
+                    bowlingGames["Active"][gameUUID]["ArchivedAt"] = None
                     returnStatus = "Active"
-                bowlingList[gameStatus].pop(gameUUID)
+                bowlingGames[gameStatus].pop(gameUUID)
                 input("Game status changed! Press ENTER to continue...")
-                return returnStatus
+                return bowlingGames, returnStatus
             elif userInput == "n":
-                break
+                return bowlingGames, returnStatus
 
 def archiveOrActivate(status):
     if status == "Active":
