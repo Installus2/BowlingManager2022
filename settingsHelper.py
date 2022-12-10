@@ -29,7 +29,7 @@ def optionsMenu(currentConfig):
   elif choice == "5":
     view_faqs()
   elif choice == "6":
-    exit()
+    return currentConfig
   else:
     print("Invalid choice. Please try again.")
     settings_menu()

@@ -109,7 +109,7 @@ def mainMenu(loadedConfig):
         elif option == "3":
             checkProfits(bowlingGames, currentConfig)
         elif option == "4":
-            sh.optionsMenu(currentConfig)
+            currentConfig = sh.optionsMenu(currentConfig)
         elif option == "e":
             print("Exiting program...")
             break
