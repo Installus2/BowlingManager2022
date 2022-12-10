@@ -115,7 +115,11 @@ def loadGames(ogList):
             elif loadSuccess == None:
                 return ogList
             else:
-                return loadSuccess
+                if "Active" in loadSuccess and "Archived" in loadSuccess:
+                    return loadSuccess
+                else:
+                    print("This file appears to be incorrect!")
+                    return ogList
         elif userInput == "n":
             return ogList
 

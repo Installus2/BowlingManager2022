@@ -43,6 +43,11 @@ def loadConfigFile():
             if loadSuccess == "exit":
                 return loadDefaultConfig()
             else:
+                defaultConfig = loadDefaultConfig
+                for key in loadSuccess.keys():
+                    if key not in defaultConfig:
+                        print("This configuration appears to be incomplete! Using default config")
+                        return loadDefaultConfig()
                 return loadSuccess
         elif askForSavedConfig == "n":
             return loadDefaultConfig()
