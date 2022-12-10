@@ -82,7 +82,6 @@ def mainMenu(loadedConfig):
     while True:
          #create menu options
         print(f"{titleName} - Main Menu\n{h.additionalSigns(f'{titleName} -Main Menu', True)}\n")       
-        print(f"")
         print("You are at the main menu, please select an option from below:")
         print("1) View Active and Archived Bowling Games")
         print("2) Inventory")
