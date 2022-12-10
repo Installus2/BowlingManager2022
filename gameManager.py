@@ -10,10 +10,15 @@ import dannyHelper as h
 PROGRAM_NAME = "Bowling Manager 2022"
 
 bowlingList = None
+activeSettings = None
 
 def gamesMenu(bowlingGames, bmSettings):
     global bowlingList
+    global activeSettings
+
     bowlingList = bowlingGames
+    activeSettings = bmSettings
+
     while True:
         print(f"\n{h.titleMe('Games Menu', False)}")
         print("Please make a selection from the options below:")
@@ -27,17 +32,15 @@ def gamesMenu(bowlingGames, bmSettings):
         
         if choice == "1":
             printGameList("Active")
-            
         elif choice == "2":
-            newGame = addGame(bmSettings["TimeOffset"])
+            newGame = addGame(activeSettings["TimeOffset"])
             bowlingGames["Active"].append(newGame)
-            
         elif choice == "3":
             archiveGame("All")
-            
+        elif choice == "4":
+            printGameList("Archived")
         elif choice == "e":
-            break
-            
+            break    
         else:
             print("That was not a valid option! Please try again.")
 
@@ -69,6 +72,9 @@ def viewListing(selectedGame, gameStatus):
         print(f"Generation Time/Date: {selectedGame['DateTimeGenerated'][0]} - {selectedGame['DateTimeGenerated'][1]}")
         print(f"Game status: {gameStatus}")
 
+        if gameStatus == "Archived":
+            print(f"Archive time: {selectedGame['ArchivedAt'][0]} - {selectedGame['ArchivedAt'][1]}")
+
         print(f"Players:\n")
         for i in range(0, len(selectedGame['Players']/2)):
             print(f"Player {(i+1)+'.':<5} {selectedGame['Players']['Name']:<15} | Score: {selectedGame['Players']['Score']}")
@@ -80,9 +86,33 @@ def viewListing(selectedGame, gameStatus):
         if userInput == "r":
             break
         elif userInput == "1":
-            editScores(selectedGame["Players"])
+            editScores(selectedGame)
         elif userInput == "2":
             switchGameStatus(selectedGame)
+
+def editScores(gameInQuestion):
+    h.titleMe("Edit Scores", False)
+    for p in gameInQuestion['Players']:
+        print(f'Player: {p["Name"]:<20} | Score: {p["Score"]}')
+    while True:
+        playerSelect = input("\nPlease enter the name of the player (blank to return):   ").capitalize()
+        if playerSelect == "":
+            return gameInQuestion
+        elif playerSelect not in gameInQuestion['Players']:
+            print("That player does not exist!")
+        else:
+            try:
+                while True:
+                    scoreInput = int(input("Please enter the new score for the player:   "))
+                    if scoreInput < 0:
+                        print("You cannot have a score less than zero!")
+                    else:
+                        gameInQuestion['Players'][playerSelect] = scoreInput
+                        
+            except ValueError:
+                print("That was not a valid input! Please try again!")
+
+
 
 
 def archiveOrActivate(status):
@@ -94,8 +124,9 @@ def archiveOrActivate(status):
 def defaultGameListing():
     gameListing = {
         "DateTimeGenerated":[],
-        "Players":[],
-        "GameType":"10-Pin"
+        "Players":{},
+        "GameType":"10-Pin",
+        "ArchivedAt":None
     }
     return gameListing
       
@@ -116,11 +147,8 @@ def addGame(timeOffset):
             print("That was not a valid input, please try again!")
 
     for i in range(0, amountOfPlayers):
-        newPlayer = {
-            "Name":"None",
-            "Score":0
-        }
-        nameInput = input(f"Please enter the name of player #{i+1}: ")
+        nameInput = input(f"Please enter the name of player #{i+1}: ").capitalize()
+        newListing["Players"][nameInput] = 0
     
     while True:
         try:

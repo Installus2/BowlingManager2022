@@ -27,6 +27,5 @@ def inventoryMenu():
     for item, quantity in inventory.items():
       print(f"{item}: {quantity}")
  
-inventoryMenu()
-
+def inventoryMenu():
     pass # DW - Placeholder for now
