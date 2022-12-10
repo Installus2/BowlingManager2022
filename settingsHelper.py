@@ -8,7 +8,8 @@
 PROGRAM_NAME = "Bowling Manager 2022"
 
 
-
+import BuisnessName
+import Timeoffset
 
 def options_menu():
   print("--- Bowling Alley Settings ---")
@@ -59,7 +60,7 @@ def change_location():
     
     
     #get the users current location
-    current_location = location.get_location()
+    current_location = BuisnessName.get_location()
 
     # Print the user's current location
     print(f"Your current location is: {current_location}")
@@ -68,7 +69,7 @@ def change_location():
     new_location = input("Enter your new location: ")
 
     # Set the user's location to the new location
-    location.set_location(new_location)
+    BuisnessName.set_location(new_location)
 
     # Print the user's new location
     print(f"Your new location is: {new_location}")
