@@ -30,7 +30,7 @@ def titleMe(PROGRAM_NAME, isMainTitle):
     if isMainTitle:
         print(f"\n\tWelcome to {PROGRAM_NAME}! | Programmed by {PROGRAMMER}\n\t{additionalSigns(f'Welcome To {PROGRAM_NAME}! | Programmed by {PROGRAMMER}', True)}\n")
     else:
-        print(f"{PROGRAM_NAME}\n{additionalSigns(f'{PROGRAM_NAME}', False)}\n")
+        print(f"\n{PROGRAM_NAME}\n{additionalSigns(f'{PROGRAM_NAME}', False)}\n")
 
 def timeMe(tzOffset):
     tzinfo = datetime.timezone(datetime.timedelta(hours=tzOffset))
