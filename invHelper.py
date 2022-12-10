@@ -28,4 +28,3 @@ def inventoryMenu():
       print(f"{item}: {quantity}")
  
 def inventoryMenu():
-    pass # DW - Placeholder for now
