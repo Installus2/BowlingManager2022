@@ -37,16 +37,18 @@ def timeMe(tzOffset):
     dateTimeNow = datetime.datetime.now(tzinfo).strftime("%B %d, %Y - %I:%M:%S %p").split(" - ")
     return dateTimeNow
 
-def fileTitle(inputText):
-    dateTimeNow = timeMe()
-    return f"\t{inputText}   |   Recorded {dateTimeNow}\n\t{additionalSigns(f'{inputText}   |   Recorded {dateTimeNow}', False)}\n"
+def fileTitle(inputText, tzOffset):
+    dateTimeNow = timeMe(tzOffset)
+    return f"\t{inputText}   |   Recorded {dateTimeNow[0]+' - '+dateTimeNow[1]}\n\t{additionalSigns(f'{inputText}   |   Recorded {dateTimeNow}', False)}\n"
 
 def isExitFromNone(exitIfNone):
-    if exitIfNone:
+    if exitIfNone == True:
         return " (leave blank to load default config)"
+    elif exitIfNone == "File":  # DW - In place for regular file opening
+        return " (leave blank to exit)"
 
-def openFile(writeMode, exitIfNone):
-    tempName = input(f"Please enter a file name to read from{isExitFromNone(exitIfNone)}:   ")
+def openFile(writeMode, exitIfNone, isPickle = False):
+    tempName = input(f"Please enter a file name to access{isExitFromNone(exitIfNone)}:   ")
     try:
         if tempName == "":
             if exitIfNone:
@@ -55,8 +57,11 @@ def openFile(writeMode, exitIfNone):
             else:
                 print("Please enter a file name!")
                 return None
-        FILE_NAME = (tempName.split(".txt"))[0]+".txt"
-        print(f"Now reading from {FILE_NAME}...\n")
+        if not isPickle:
+            FILE_NAME = (tempName.split(".txt"))[0]+".txt"
+        elif isPickle:
+            FILE_NAME = (tempName.split(".txt"))[0]+".dat"
+        print(f"Now accessing {FILE_NAME}...\n")
         returnFile = open(FILE_NAME, writeMode)
         sleep(0.25)
         return returnFile

@@ -34,7 +34,7 @@ def loadConfigFile():
     while True:
         askForSavedConfig = input("Would you like to load a previous saved config? (y/n):   ").lower()
         if askForSavedConfig == "y":
-            loadSuccess = h.openFile('rb', True)
+            loadSuccess = h.openFile('rb', True, True)
             if loadSuccess == "exit":
                 return loadDefaultConfig()
             else:
@@ -77,7 +77,18 @@ def mainMenu(loadedConfig):
 
     titleName = currentConfig["BusinessName"]
 
-    inventory = []
+    inventory = {
+        "Bowling balls": [30, 50],  # DW - Inventory amount, price
+        "Shoes": [60, 60],
+        "Pins": [120, 20],
+        "Towels": [50, 25],
+        "Scorecards": [30, 1],
+        "Food (tons)": [1, 200],
+        "Drinks (litres)":[20, 25],
+        "Tables": [20, 150],
+        "Chairs": [60, 65],
+        "Ball-return machine":[20, 500]
+    }
     
     while True:
          #create menu options
@@ -94,7 +105,7 @@ def mainMenu(loadedConfig):
         if option == "1":
             gm.gamesMenu(bowlingGames, currentConfig)
         elif option == "2":
-            ih.inventoryMenu(inventory)
+            ih.inventoryMenu(inventory, currentConfig)
         elif option == "3":
             checkProfits(bowlingGames, currentConfig)
         elif option == "4":
