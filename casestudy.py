@@ -35,7 +35,7 @@ def loadConfigFile():
     while True:
         askForSavedConfig = input("Would you like to load a previous saved config? (y/n):   ").lower()
         if askForSavedConfig == "y":
-            loadSuccess = h.openFile('r', True)
+            loadSuccess = h.openFile('rb', True)
             if loadSuccess == "exit":
                 return loadDefaultConfig()
             else:
@@ -53,7 +53,16 @@ def loadDefaultConfig():
         "PricePerPlayer":5,
         "BaseGamePrice":10,
         "BusinessName":"Danny's Alley",
-        "TimeOffset":-5
+        "TimeOffset":-5,
+        "BusinessHours":{
+            "Monday":"9:00 AM - 10:00 PM",
+            "Tuesday":"9:00 AM - 10:00 PM",
+            "Wednesday":"9:00 AM - 10:00 PM",
+            "Thursday":"9:00 AM - 10:00 PM",
+            "Friday":"9:00 AM - 10:00 PM",
+            "Saturday":"9:00 AM - 10:00 PM",
+            "Sunday":"9:00 AM - 10:00 PM"
+        }
     }
     return bmSettings
 
@@ -73,7 +82,8 @@ def mainMenu(loadedConfig):
     
     while True:
          #create menu options
-        print(f"Main Menu\n{h.additionalSigns('Main Menu', True)}\n")       
+        print(f"{titleName} - Main Menu\n{h.additionalSigns(f'{titleName} -Main Menu', True)}\n")       
+        print(f"")
         print("You are at the main menu, please select an option from below:")
         print("1) View Active and Archived Bowling Games")
         print("2) Inventory")

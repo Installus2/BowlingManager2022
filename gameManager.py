@@ -37,12 +37,47 @@ def gamesMenu(bowlingGames, bmSettings):
     else:
         print("That was not a valid option! Please try again.")
 
-def activeList(activeGames):
-    h.titleMe("Active Games List", False)
-    activeList = activeGames["Active"]
-    selectedGame = None
-    for i in range(0, len(activeGames["Active"])):
-        print(f"{i+1}) ")
+def printGameList(gamesList, gameStatus):
+    while True:
+        h.titleMe("Active Games List", False)
+        gamesList = gamesList[gameStatus]
+        selectedGame = None
+        for i in range(0, len(gamesList)):
+            print(f"{i+1}) {len(gamesList[i]['Players'] / 2)}-player game @ {gamesList[i]['DateTimeGenerated'][1]}")
+        selectedGame = input("\nPlease select a game you wish to view (blank to return to menu):   ")
+        if selectedGame == "":
+            break
+        else:
+            try:
+                selectedGame = int(selectedGame) - 1
+                changeStatus = viewListing(gamesList[selectedGame], gameStatus)
+            except ValueError:
+                print("That was not a valid input, please try again!")
+            except EOFError:
+                print("That was not a valid input, please try again!")
+            finally:
+                input("Press ENTER to return to the game list...")
+
+def viewListing(selectedGame, gameStatus):
+    
+    h.titleMe("View Listing", False)
+
+    print(f"Generation Time/Date: {selectedGame['DateTimeGenerated'][0]} - {selectedGame['DateTimeGenerated'][1]}")
+    print(f"Game status: {gameStatus}")
+
+    print(f"Players:\n")
+    for i in range(0, len(selectedGame['Players']/2)):
+        print(f"Player {(i+1)+'.':<5} {selectedGame['Players']['Name']:<15} | Score: {selectedGame['Players']['Score']}")
+
+    print("\nYou can make the following options"+
+    f"\n1) Edit the score of a player\n2) {archiveOrActivate(gameStatus)} this game\nR) Return to the game list")
+
+
+def archiveOrActivate(status):
+    if status == "Active":
+        return "Archive"
+    elif status == "Archived":
+        return "Re-activate"
 
 def defaultGameListing():
     gameListing = {
