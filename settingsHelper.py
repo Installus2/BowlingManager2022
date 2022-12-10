@@ -7,11 +7,7 @@
 
 PROGRAM_NAME = "Bowling Manager 2022"
 
-
-import BuisnessName
-import Timeoffset
-
-def options_menu():
+def optionsMenu(currentConfig):
   print("--- Bowling Alley Settings ---")
   print("1. view location")
   print("2. view price")
