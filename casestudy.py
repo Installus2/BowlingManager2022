@@ -32,15 +32,21 @@ def main():
     mainMenu(settingsConfig)
 
 def loadConfigFile():
-    askForSavedConfig = input("Would you like to load a previous saved config? (y/n):   ").lower()
-    if askForSavedConfig == "y":
-        loadSuccess = h.openFile('r', True)
-        if loadSuccess == "exit":
+    while True:
+        askForSavedConfig = input("Would you like to load a previous saved config? (y/n):   ").lower()
+        if askForSavedConfig == "y":
+            loadSuccess = h.openFile('r', True)
+            if loadSuccess == "exit":
+                return loadDefaultConfig()
+            else:
+                savedConfig = p.load(loadSuccess)
+                loadSuccess.close()
+                return savedConfig
+        elif askForSavedConfig == "n":
             return loadDefaultConfig()
         else:
-            savedConfig = p.load(loadSuccess)
-            loadSuccess.close()
-            return savedConfig
+            print("Please make a valid selection!")
+            
 
 def loadDefaultConfig():
     bmSettings = {
@@ -52,7 +58,6 @@ def loadDefaultConfig():
     return bmSettings
 
 def mainMenu(loadedConfig):
-
     global titleName
 
     bowlingGames = {

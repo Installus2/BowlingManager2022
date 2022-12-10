@@ -7,110 +7,94 @@
 
 import dannyHelper as h
 
-def gamesMenu():
+PROGRAM_NAME = "Bowling Manager 2022"
+
+def gamesMenu(bowlingGames, bmSettings):
    while True:
     print(f"\n{h.titleMe('Games Menu', False)}")
     print("Please make a selection from the options below:")
     print("1) View current active games")
     print("2) Add new game")
     print("3) Archive all current games")
-    print("4) score calculator")
+    print("4) View archived games")
     print("E) Return to main menu")
 
     choice = input("Select an option: ").lower()
     
     if choice == "1":
-            viewActiveGames()
+        bowlingGames = activeList(bowlingGames)
         
     elif choice == "2":
-        
-            addGame()
+        newGame = addGame(bmSettings["TimeOffset"])
+        bowlingGames["Active"].append(newGame)
         
     elif choice == "3":
-            archiveGames()
-            
-    elif choice == "4":
-        scorecalculator()
+        archiveGame("All")
         
     elif choice == "e":
-            break
+        break
         
     else:
-        print("please enter correct option")
+        print("That was not a valid option! Please try again.")
 
-def viewActiveGames():
-    #To open a old game.
-    username = input("Please enter username")
-    filename = open(username, "r")
-    print()
-    #To print without bracket & comma   
-    separator=""
-    print(separator.join(filename))
+def activeList(activeGames):
+    h.titleMe("Active Games List", False)
+    activeList = activeGames["Active"]
+    selectedGame = None
+    for i in range(0, len(activeGames["Active"])):
+        print(f"{i+1}) ")
+
+def defaultGameListing():
+    gameListing = {
+        "DateTimeGenerated":[],
+        "Players":[],
+        "GameType":"10-Pin"
+    }
+    return gameListing
       
 #for starting a new bowling game        
-def addGame():
-    print("Add a new game")
+def addGame(timeOffset):
+    h.titleMe(PROGRAM_NAME, False)
+    amountOfPlayers = None
+    gameType = None
+    newListing = defaultGameListing()
+    
+    while True:
+        try:
+            amountOfPlayers = int(input("How many players are playing in this game?:   "))
+            break
+        except ValueError:
+            print("That was not a valid input, please try again!")
+        except EOFError:
+            print("That was not a valid input, please try again!")
+
+    for i in range(0, amountOfPlayers):
+        newPlayer = {
+            "Name":"None",
+            "Score":0
+        }
+        nameInput = input(f"Please enter the name of player #{i+1}: ")
+    
+    while True:
+        try:
+            gameType = input("How many pins are used in this game? (leave blank for 10-pin):   ")
+            if gameType == "":
+                gameType = 10
+            else:
+                gameType = int(gameType)
+            break
+        except ValueError:
+            print("That was not a valid input, please try again!")
+        except EOFError:
+            print("That was not a valid input, please try again!")
+    
+    newListing["GameType"] = str(gameType)+"-pin"
+
+    genTime = h.timeMe(timeOffset)
+    newListing["DateTimeGenerated"] = [genTime[0], genTime[1]]
+
+    return newListing
 
 #bowling histories
-def archiveGames():
+def archiveGame():
     print("Archive all current games")
-      
-#bowling score calculator       
-def scorecalculator():
-   #its better to ask username for everytime so, later  user information can be pulled easily.
-    username = input('please enter a username ')
-    totalscore = open(username,'w')
-    print("The total number of rounds are 9")
-                     
-    score = 0
-    c = 0 
-
-    def print_score(frame,score):
-        print("\n Score after {0} frame is {1}".format(frame+1,score))
-
-    for frame in range(10):
-        roll_1 = 0
-        roll_2 = 0
-        roll_1 = int(input('\n Pin dropped in first roll: '))
-        if roll_1 == 10:
-            score += 10
-            print_score(frame,score)
-            if c == 1 or c == 2:
-                score += 10
-            c = 1
-        else:
-            roll_2 = int(input('\n Pin dropped in second roll: '))
-            if c == 1:
-                score += roll_1 + roll_2
-            if c == 2:
-                score += roll_1
-            if (roll_1 + roll_2) == 10 :
-                score += 10
-                c = 2
-                print_score(frame,score)
-            else:
-                score += roll_1 + roll_2
-                c = 0
-                print_score(frame,score)
-        if frame == 9:
-            if c == 1:
-                r1 = int(input('\n Pin dropped in bonus first roll: '))
-                if r1 == 10:
-                    score += 10
-                    print("Total score {}".format(score))
-                else:
-                    r2 = int(input('\nPin dropped in bonus second roll: '))
-                    score += r1 + r2 
-                    print("Total score {}".format(score))
-            elif c == 2:
-                r1 = int(input('\n Pin dropped in bonus first roll: '))
-                score += r1
-                print("Total score {}".format(score))
-            else:
-                print("Total score {}".format(score))
-
-        totalscore.write(str(roll_1))
-        totalscore.write("\t")
-        totalscore.write(str(roll_2))
-        totalscore.write("\n")
-    totalscore.close()

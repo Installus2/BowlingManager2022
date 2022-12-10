@@ -6,3 +6,8 @@
 # Reference :   
 
 inventory = []
+
+PROGRAM_NAME = "Bowling Manager 2022"
+
+def inventoryMenu():
+    pass # DW - Placeholder for now

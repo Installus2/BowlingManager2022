@@ -32,10 +32,9 @@ def titleMe(PROGRAM_NAME, isMainTitle):
     else:
         print(f"{PROGRAM_NAME}\n{additionalSigns(f'{PROGRAM_NAME}', False)}\n")
 
-def timeMe():
-    tzOffset = -5.0 # EST offset from GMT
+def timeMe(tzOffset):
     tzinfo = datetime.timezone(datetime.timedelta(hours=tzOffset))
-    dateTimeNow = datetime.datetime.now(tzinfo).strftime("%B %d, %Y - %I:%M:%S %p")
+    dateTimeNow = datetime.datetime.now(tzinfo).strftime("%B %d, %Y - %I:%M:%S %p").split(" - ")
     return dateTimeNow
 
 def fileTitle(inputText):
