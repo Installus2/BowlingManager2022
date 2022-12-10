@@ -118,7 +118,20 @@ def mainMenu(loadedConfig):
             print("Please select a valid option")
 
 def checkProfits():
-    pass # DW - Placeholder for now
+    def checkProfits(bowlingGames, currentConfig):
+ 
+  totalProfits = 0
+  
+   for game in bowlingGames:
+    
+    totalPrice = game.numPlayers * currentConfig.pricePerPlayer + currentConfig.pricePerGame
+    
+    
+    totalProfits += totalPrice
+  
+  
+  return totalProfits
+
 
 if __name__ == "__main__":
     main()
