@@ -9,38 +9,42 @@ import dannyHelper as h
 
 PROGRAM_NAME = "Bowling Manager 2022"
 
+bowlingList = None
+
 def gamesMenu(bowlingGames, bmSettings):
-   while True:
-    print(f"\n{h.titleMe('Games Menu', False)}")
-    print("Please make a selection from the options below:")
-    print("1) View current active games")
-    print("2) Add new game")
-    print("3) Archive all current games")
-    print("4) View archived games")
-    print("E) Return to main menu")
+    global bowlingList
+    bowlingList = bowlingGames
+    while True:
+        print(f"\n{h.titleMe('Games Menu', False)}")
+        print("Please make a selection from the options below:")
+        print("1) View current active games")
+        print("2) Add new game")
+        print("3) Archive all current games")
+        print("4) View archived games")
+        print("E) Return to main menu")
 
-    choice = input("Select an option: ").lower()
-    
-    if choice == "1":
-        bowlingGames = activeList(bowlingGames)
+        choice = input("Select an option: ").lower()
         
-    elif choice == "2":
-        newGame = addGame(bmSettings["TimeOffset"])
-        bowlingGames["Active"].append(newGame)
-        
-    elif choice == "3":
-        archiveGame("All")
-        
-    elif choice == "e":
-        break
-        
-    else:
-        print("That was not a valid option! Please try again.")
+        if choice == "1":
+            printGameList("Active")
+            
+        elif choice == "2":
+            newGame = addGame(bmSettings["TimeOffset"])
+            bowlingGames["Active"].append(newGame)
+            
+        elif choice == "3":
+            archiveGame("All")
+            
+        elif choice == "e":
+            break
+            
+        else:
+            print("That was not a valid option! Please try again.")
 
-def printGameList(gamesList, gameStatus):
+def printGameList(gameStatus):
     while True:
         h.titleMe("Active Games List", False)
-        gamesList = gamesList[gameStatus]
+        gamesList = bowlingList[gameStatus]
         selectedGame = None
         for i in range(0, len(gamesList)):
             print(f"{i+1}) {len(gamesList[i]['Players'] / 2)}-player game @ {gamesList[i]['DateTimeGenerated'][1]}")
@@ -59,18 +63,26 @@ def printGameList(gamesList, gameStatus):
                 input("Press ENTER to return to the game list...")
 
 def viewListing(selectedGame, gameStatus):
-    
-    h.titleMe("View Listing", False)
+    while True:
+        h.titleMe("View Listing", False)
 
-    print(f"Generation Time/Date: {selectedGame['DateTimeGenerated'][0]} - {selectedGame['DateTimeGenerated'][1]}")
-    print(f"Game status: {gameStatus}")
+        print(f"Generation Time/Date: {selectedGame['DateTimeGenerated'][0]} - {selectedGame['DateTimeGenerated'][1]}")
+        print(f"Game status: {gameStatus}")
 
-    print(f"Players:\n")
-    for i in range(0, len(selectedGame['Players']/2)):
-        print(f"Player {(i+1)+'.':<5} {selectedGame['Players']['Name']:<15} | Score: {selectedGame['Players']['Score']}")
+        print(f"Players:\n")
+        for i in range(0, len(selectedGame['Players']/2)):
+            print(f"Player {(i+1)+'.':<5} {selectedGame['Players']['Name']:<15} | Score: {selectedGame['Players']['Score']}")
 
-    print("\nYou can make the following options"+
-    f"\n1) Edit the score of a player\n2) {archiveOrActivate(gameStatus)} this game\nR) Return to the game list")
+        print("\nYou can make the following options"+
+        f"\n1) Edit the score of a player\n2) {archiveOrActivate(gameStatus)} this game\nR) Return to the game list")
+
+        userInput = input("\nPlease make a selection:   ").lower()
+        if userInput == "r":
+            break
+        elif userInput == "1":
+            editScores(selectedGame["Players"])
+        elif userInput == "2":
+            switchGameStatus(selectedGame)
 
 
 def archiveOrActivate(status):
