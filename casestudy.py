@@ -4,6 +4,10 @@
 # Programmers   : Amal,Athul,Danny,Minto 
 # Date          : 3 DEC 2022
 # Reference     :
+#
+# Inputs: Configuration file, inventory file, bowling game file
+# Processing: Modifying configuration and inventory, switching bowling game status, changing scores of players
+# Output: New configuration and inventory files (.txt and .dat), saved bowling game files (.txt and .dat)
 
 #different options for selecting users need.
 #scores write in a file
