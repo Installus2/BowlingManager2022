@@ -6,7 +6,6 @@
 # Reference     :
 
 #different options for selecting users need.
-#Bowling score calculaor
 #scores write in a file
 
 import csv
@@ -70,8 +69,8 @@ def mainMenu(loadedConfig):
     global titleName
 
     bowlingGames = {
-        "Active":[],
-        "Archived":[]
+        "Active":{},
+        "Archived":{}
     }
 
     currentConfig = loadedConfig
