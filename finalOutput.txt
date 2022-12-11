@@ -1,0 +1,757 @@
+======================================================= RESTART: C:\Users\Danny Wakeling\OneDrive\Desktop\Introduction To Programming\Case Study\BowlingManager2022\casestudy.py =======================================================
+
+	Welcome to Bowling Manager 2022! | Programmed by Danny, Minto, Athul, and Amal
+	==============================================================================
+
+Would you like to load a previous saved config? (y/n):   y
+Please enter a file name to access (leave blank to load default config):   finalconfig
+Now accessing finalconfig.dat...
+
+Final Alley - Main Menu
+======================
+
+You are at the main menu, please select an option from below:
+1) View Active and Archived Bowling Games
+2) Inventory
+3) Check Today's Profits
+4) Management Options
+E) Exit
+
+Select an option: 2
+
+Inventory
+---------
+
+Please select an option from below: 
+
+1) View inventory
+2) Add/Edit inventory
+3) Save inventory
+4) Load inventory
+E) Return to main menu
+
+Please select an option:   1
+
+Add/Edit Inventory
+------------------
+
+Now printing current inventory:
+
+Bowling balls:       x 30    @ $ 50.00
+Shoes:               x 60    @ $ 60.00
+Pins:                x 120   @ $ 20.00
+Towels:              x 50    @ $ 25.00
+Scorecards:          x 30    @ $ 1.00
+Food (tons):         x 1     @ $ 200.00
+Drinks (litres):     x 20    @ $ 25.00
+Tables:              x 20    @ $ 150.00
+Chairs:              x 60    @ $ 65.00
+Ball-return machine: x 20    @ $ 500.00
+
+Net Value of Inventory: $ 26,380.00
+Press ENTER to return to the menu...
+
+Inventory
+---------
+
+Please select an option from below: 
+
+1) View inventory
+2) Add/Edit inventory
+3) Save inventory
+4) Load inventory
+E) Return to main menu
+
+Please select an option:   4
+
+Load Inventory
+--------------
+
+Would you like to load an inventory from a .dat file? (y/n):   finalinventorydat
+Would you like to load an inventory from a .dat file? (y/n):   y
+Please enter a file name to access (leave blank to exit):   finalinventorydat
+Now accessing finalinventorydat.dat...
+
+
+Inventory
+---------
+
+Please select an option from below: 
+
+1) View inventory
+2) Add/Edit inventory
+3) Save inventory
+4) Load inventory
+E) Return to main menu
+
+Please select an option:   1
+
+Add/Edit Inventory
+------------------
+
+Now printing current inventory:
+
+Bowling balls:       x 30    @ $ 50.00
+Shoes:               x 60    @ $ 60.00
+Pins:                x 120   @ $ 20.00
+Towels:              x 50    @ $ 25.00
+Scorecards:          x 30    @ $ 1.00
+Food (tons):         x 1     @ $ 200.00
+Drinks (litres):     x 20    @ $ 25.00
+Tables:              x 20    @ $ 150.00
+Chairs:              x 60    @ $ 65.00
+Ball-return machine: x 20    @ $ 500.00
+Apples:              x 40    @ $ 5.00
+
+Net Value of Inventory: $ 26,580.00
+Press ENTER to return to the menu...
+
+Inventory
+---------
+
+Please select an option from below: 
+
+1) View inventory
+2) Add/Edit inventory
+3) Save inventory
+4) Load inventory
+E) Return to main menu
+
+Please select an option:   e
+Final Alley - Main Menu
+======================
+
+You are at the main menu, please select an option from below:
+1) View Active and Archived Bowling Games
+2) Inventory
+3) Check Today's Profits
+4) Management Options
+E) Exit
+
+Select an option: 1
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 2
+
+Bowling Manager 2022
+--------------------
+
+How many players are playing in this game?:   Danny
+That was not a valid input, please try again!
+How many players are playing in this game?:   5
+Please enter the name of player #1: Danny
+Please enter the name of player #2: Matt
+Please enter the name of player #3: Ashlee
+Please enter the name of player #4: Olive
+Please enter the name of player #5: Chris
+How many pins are used in this game? (leave blank for 10-pin):   
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 2
+
+Bowling Manager 2022
+--------------------
+
+How many players are playing in this game?:   3
+Please enter the name of player #1: Nana
+Please enter the name of player #2: Papa
+Please enter the name of player #3: Ashley
+How many pins are used in this game? (leave blank for 10-pin):   5
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 2
+
+Bowling Manager 2022
+--------------------
+
+How many players are playing in this game?:   2
+Please enter the name of player #1: Chloe
+Please enter the name of player #2: Chelsea
+How many pins are used in this game? (leave blank for 10-pin):   7
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 1
+
+Active Games List
+-----------------
+
+1) 5-player, 10-pin game @ 12:10:39 PM
+2) 3-player, 5-pin game @ 12:10:47 PM
+3) 2-player, 7-pin game @ 12:10:57 PM
+
+Please select a game you wish to view (blank to return to menu):   1
+
+View Listing
+------------
+
+Generation Time/Date: December 10, 2022 - 12:10:39 PM
+Game status: Active
+
+Game Type: 10-pin
+Players:
+
+Player 1.    Danny           | Score: 0
+Player 2.    Matt            | Score: 0
+Player 3.    Ashlee          | Score: 0
+Player 4.    Olive           | Score: 0
+Player 5.    Chris           | Score: 0
+
+You can make the following options
+1) Edit the score of a player
+2) Archive this game
+R) Return to the game list
+
+Please make a selection:   1
+
+Edit Scores
+-----------
+
+Player: Danny                | Score: 0
+Player: Matt                 | Score: 0
+Player: Ashlee               | Score: 0
+Player: Olive                | Score: 0
+Player: Chris                | Score: 0
+
+Please enter the name of the player (blank to return):   Danny
+Please enter the new score for the player:   300
+
+View Listing
+------------
+
+Generation Time/Date: December 10, 2022 - 12:10:39 PM
+Game status: Active
+
+Game Type: 10-pin
+Players:
+
+Player 1.    Danny           | Score: 300
+Player 2.    Matt            | Score: 0
+Player 3.    Ashlee          | Score: 0
+Player 4.    Olive           | Score: 0
+Player 5.    Chris           | Score: 0
+
+You can make the following options
+1) Edit the score of a player
+2) Archive this game
+R) Return to the game list
+
+Please make a selection:   2
+
+Switch Game Status
+------------------
+
+Switch this game's status? (y/n):   y
+Game status changed! Press ENTER to continue...
+
+View Listing
+------------
+
+Generation Time/Date: December 10, 2022 - 12:10:39 PM
+Game status: Archived
+Archive time: December 10, 2022 - 12:11:06 PM
+
+Game Type: 10-pin
+Players:
+
+Player 1.    Danny           | Score: 300
+Player 2.    Matt            | Score: 0
+Player 3.    Ashlee          | Score: 0
+Player 4.    Olive           | Score: 0
+Player 5.    Chris           | Score: 0
+
+You can make the following options
+1) Edit the score of a player
+2) Re-activate this game
+R) Return to the game list
+
+Please make a selection:   r
+
+Active Games List
+-----------------
+
+1) 3-player, 5-pin game @ 12:10:47 PM
+2) 2-player, 7-pin game @ 12:10:57 PM
+
+Please select a game you wish to view (blank to return to menu):   
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 3
+
+Switch Game Status
+------------------
+
+Archive all active games? (y/n):   y
+Active games archived! Press ENTER to continue...
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 1
+
+Active Games List
+-----------------
+
+
+Please select a game you wish to view (blank to return to menu):   
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 4
+
+Archived Games List
+-------------------
+
+1) 5-player, 10-pin game @ 12:10:39 PM
+2) 3-player, 5-pin game @ 12:10:47 PM
+3) 2-player, 7-pin game @ 12:10:57 PM
+
+Please select a game you wish to view (blank to return to menu):   1
+
+View Listing
+------------
+
+Generation Time/Date: December 10, 2022 - 12:10:39 PM
+Game status: Archived
+Archive time: December 10, 2022 - 12:11:06 PM
+
+Game Type: 10-pin
+Players:
+
+Player 1.    Danny           | Score: 300
+Player 2.    Matt            | Score: 0
+Player 3.    Ashlee          | Score: 0
+Player 4.    Olive           | Score: 0
+Player 5.    Chris           | Score: 0
+
+You can make the following options
+1) Edit the score of a player
+2) Re-activate this game
+R) Return to the game list
+
+Please make a selection:   r
+
+Archived Games List
+-------------------
+
+1) 5-player, 10-pin game @ 12:10:39 PM
+2) 3-player, 5-pin game @ 12:10:47 PM
+3) 2-player, 7-pin game @ 12:10:57 PM
+
+Please select a game you wish to view (blank to return to menu):   1
+
+View Listing
+------------
+
+Generation Time/Date: December 10, 2022 - 12:10:39 PM
+Game status: Archived
+Archive time: December 10, 2022 - 12:11:06 PM
+
+Game Type: 10-pin
+Players:
+
+Player 1.    Danny           | Score: 300
+Player 2.    Matt            | Score: 0
+Player 3.    Ashlee          | Score: 0
+Player 4.    Olive           | Score: 0
+Player 5.    Chris           | Score: 0
+
+You can make the following options
+1) Edit the score of a player
+2) Re-activate this game
+R) Return to the game list
+
+Please make a selection:   2
+
+Switch Game Status
+------------------
+
+Switch this game's status? (y/n):   y
+Game status changed! Press ENTER to continue...
+
+View Listing
+------------
+
+Generation Time/Date: December 10, 2022 - 12:10:39 PM
+Game status: Active
+
+Game Type: 10-pin
+Players:
+
+Player 1.    Danny           | Score: 300
+Player 2.    Matt            | Score: 0
+Player 3.    Ashlee          | Score: 0
+Player 4.    Olive           | Score: 0
+Player 5.    Chris           | Score: 0
+
+You can make the following options
+1) Edit the score of a player
+2) Archive this game
+R) Return to the game list
+
+Please make a selection:   r
+
+Archived Games List
+-------------------
+
+1) 3-player, 5-pin game @ 12:10:47 PM
+2) 2-player, 7-pin game @ 12:10:57 PM
+
+Please select a game you wish to view (blank to return to menu):   
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 1
+
+Active Games List
+-----------------
+
+1) 5-player, 10-pin game @ 12:10:39 PM
+
+Please select a game you wish to view (blank to return to menu):   
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 5
+
+Save Bowling Games
+------------------
+
+Would you like to save a list of bowling games as a .txt? (y/n, blank to exit):   y
+Please enter a file name to access (leave blank to exit):   finalBowlingTXT
+Now accessing finalBowlingTXT.txt...
+
+File saved!
+Press ENTER to return to the main menu...
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 5
+
+Save Bowling Games
+------------------
+
+Would you like to save a list of bowling games as a .txt? (y/n, blank to exit):   y
+Please enter a file name to access (leave blank to exit):   finalBowlingDAT
+Now accessing finalBowlingDAT.txt...
+
+File saved!
+Press ENTER to return to the main menu...
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 5
+
+Save Bowling Games
+------------------
+
+Would you like to save a list of bowling games as a .txt? (y/n, blank to exit):   n
+Please enter the name you would like to save the file as:   finalBowlingDAT2
+File saved!
+Press ENTER to return to the main menu...
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 4
+
+Archived Games List
+-------------------
+
+1) 3-player, 5-pin game @ 12:10:47 PM
+2) 2-player, 7-pin game @ 12:10:57 PM
+
+Please select a game you wish to view (blank to return to menu):   1
+
+View Listing
+------------
+
+Generation Time/Date: December 10, 2022 - 12:10:47 PM
+Game status: Archived
+Archive time: December 10, 2022 - 12:11:13 PM
+
+Game Type: 5-pin
+Players:
+
+Player 1.    Nana            | Score: 0
+Player 2.    Papa            | Score: 0
+Player 3.    Ashley          | Score: 0
+
+You can make the following options
+1) Edit the score of a player
+2) Re-activate this game
+R) Return to the game list
+
+Please make a selection:   2
+
+Switch Game Status
+------------------
+
+Switch this game's status? (y/n):   y
+Game status changed! Press ENTER to continue...
+
+View Listing
+------------
+
+Generation Time/Date: December 10, 2022 - 12:10:47 PM
+Game status: Active
+
+Game Type: 5-pin
+Players:
+
+Player 1.    Nana            | Score: 0
+Player 2.    Papa            | Score: 0
+Player 3.    Ashley          | Score: 0
+
+You can make the following options
+1) Edit the score of a player
+2) Archive this game
+R) Return to the game list
+
+Please make a selection:   r
+
+Archived Games List
+-------------------
+
+1) 2-player, 7-pin game @ 12:10:57 PM
+
+Please select a game you wish to view (blank to return to menu):   
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 1
+
+Active Games List
+-----------------
+
+1) 5-player, 10-pin game @ 12:10:39 PM
+2) 3-player, 5-pin game @ 12:10:47 PM
+
+Please select a game you wish to view (blank to return to menu):   
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 6
+
+Load Games List
+---------------
+
+Would you like to load an existing games list from a .dat file? (y/n):   y
+Please enter a file name to access (leave blank to exit):   finalBowlingDAT2
+Now accessing finalBowlingDAT2.dat...
+
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 1
+
+Active Games List
+-----------------
+
+1) 5-player, 10-pin game @ 12:10:39 PM
+
+Please select a game you wish to view (blank to return to menu):   
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: 4
+
+Archived Games List
+-------------------
+
+1) 3-player, 5-pin game @ 12:10:47 PM
+2) 2-player, 7-pin game @ 12:10:57 PM
+
+Please select a game you wish to view (blank to return to menu):   
+
+Games Menu
+----------
+
+Please make a selection from the options below:
+1) View current active games
+2) Add new game
+3) Archive all current games
+4) View archived games
+5) Save games to file
+6) Load from file
+E) Return to main menu
+Select an option: e
+Final Alley - Main Menu
+======================
+
+You are at the main menu, please select an option from below:
+1) View Active and Archived Bowling Games
+2) Inventory
+3) Check Today's Profits
+4) Management Options
+E) Exit
+
+Select an option: 3
+
+Check Today's Profits
+---------------------
+
+Calculating...
+Total Active Games Profit:   $ 57.50
+Total Archived Games Profit: $ 77.50
+
+Total Profits Today:         $ 135.00
+Press ENTER to return to the main menu...
+Final Alley - Main Menu
+======================
+
+You are at the main menu, please select an option from below:
+1) View Active and Archived Bowling Games
+2) Inventory
+3) Check Today's Profits
+4) Management Options
+E) Exit
+
+Select an option: e
+Exiting program...

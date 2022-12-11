@@ -78,6 +78,8 @@ def updateInventory(inventory):  # DW - Updated function name to shorten it down
                     price = inventory[item][1]
                 
                 while True:
+                    if item not in inventory:
+                        break
                     newPrice = input(f"Enter the price per item (leave blank to keep price at $ {price:,.2f}):   ")
                     if newPrice == "":
                         break

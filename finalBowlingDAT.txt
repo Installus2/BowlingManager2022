@@ -1,0 +1,45 @@
+	Final Alley   |   Recorded December 10, 2022 - 12:11:49 PM
+	---------------------------------------------------------------
+
+
+
+Active Games:
+
+Game ID: 51a3acbb-cc8f-430c-8066-62b034448947
+Generation Time/Date: December 10, 2022 - 12:10:39 PM
+Game Type: 10-pin
+
+Players:
+
+Player 1.    Danny           | Score: 300
+Player 2.    Matt            | Score: 0
+Player 3.    Ashlee          | Score: 0
+Player 4.    Olive           | Score: 0
+Player 5.    Chris           | Score: 0
+
+
+
+Archived Games:
+
+Game ID: c035e3e8-24aa-451e-a7c8-5a73e2945d46
+Generation Time/Date: December 10, 2022 - 12:10:47 PM
+Archive Date/Time: December 10, 2022 - 12:11:13 PM
+Game Type: 5-pin
+
+Players:
+
+Player 1.    Nana            | Score: 0
+Player 2.    Papa            | Score: 0
+Player 3.    Ashley          | Score: 0
+
+Game ID: ec8fb066-0963-4d54-b5d5-939322e8817a
+Generation Time/Date: December 10, 2022 - 12:10:57 PM
+Archive Date/Time: December 10, 2022 - 12:11:13 PM
+Game Type: 7-pin
+
+Players:
+
+Player 1.    Chloe           | Score: 0
+Player 2.    Chelsea         | Score: 0
+
+

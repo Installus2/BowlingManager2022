@@ -1,0 +1,7 @@
+View/Change Prices
+------------------
+
+Current cost per game: $10.00
+Enter the new price per game (leave blank to keep as-is): asd
+Please input a valid number!
+Enter the new price per game (leave blank to keep as-is): 

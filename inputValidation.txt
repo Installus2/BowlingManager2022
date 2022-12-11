@@ -1,0 +1,19 @@
+======================================================= RESTART: C:\Users\Danny Wakeling\OneDrive\Desktop\Introduction To Programming\Case Study\BowlingManager2022\casestudy.py =======================================================
+
+	Welcome to Bowling Manager 2022! | Programmed by Danny, Minto, Athul, and Amal
+	==============================================================================
+
+Would you like to load a previous saved config? (y/n):   y
+Please enter a file name to access (leave blank to load default config):   inventory3
+Now accessing inventory3.dat...
+
+This configuration appears to be incomplete! Using default config
+Danny's Alley - Main Menu
+========================
+
+You are at the main menu, please select an option from below:
+1) View Active and Archived Bowling Games
+2) Inventory
+3) Check Today's Profits
+4) Management Options
+E) Exit
